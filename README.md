@@ -18,10 +18,10 @@ No special requirements; note that this role requires root access, so either run
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
 ```
-server_base_timezone: "Europe/Berlin"
+php56_timezone: "Europe/Berlin"
 ```
 
-The Timezone use by PHP.
+The PHP Timezone to use.
 
 ```
 php56_modules:
@@ -39,7 +39,7 @@ php56_modules:
   - php5-xsl
 ```
 
-The Default Apache2 Modules to load.
+The PHP Modules to load.
 
 ## Example Playbook
 
