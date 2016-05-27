@@ -1,4 +1,4 @@
-# Ansible Role - PHP 5.6
+# Ansible Role - PHP 5.6 for Linux Server
 
 [![Build Status](https://travis-ci.org/elnebuloso/ansible-role-php56.svg?branch=master)](https://travis-ci.org/elnebuloso/ansible-role-php56)
 
