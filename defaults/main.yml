@@ -1,6 +1,9 @@
 ---
+# the timezone to use by php
 php56_timezone: "Europe/Berlin"
-php56_modules:
+
+# the php modules to enable
+php56_modules_enabled:
   - php5-cli
   - php5-curl
   - php5-gd
@@ -13,3 +16,6 @@ php56_modules:
   - php5-sqlite
   - php5-xdebug
   - php5-xsl
+
+# the php modules to disable
+php56_modules_disabled: []

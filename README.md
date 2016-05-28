@@ -2,16 +2,11 @@
 
 [![Build Status](https://travis-ci.org/elnebuloso/ansible-role-php56.svg?branch=master)](https://travis-ci.org/elnebuloso/ansible-role-php56)
 
+PHP 5.6 for Ubuntu Linux Server.
+
 ## Requirements
 
-No special requirements; note that this role requires root access, so either run it in a playbook with a global `become: yes`, or invoke the role in your playbook like:
-
-```
-- hosts: localhost
-  roles:
-    - role: elnebuloso.php56
-      become: yes
-```
+None.
 
 ## Role Variables
 
@@ -21,10 +16,10 @@ Available variables are listed below, along with default values (see `defaults/m
 php56_timezone: "Europe/Berlin"
 ```
 
-The PHP Timezone to use.
+the timezone to use by php
 
 ```
-php56_modules:
+php56_modules_enabled:
   - php5-cli
   - php5-curl
   - php5-gd
@@ -39,26 +34,26 @@ php56_modules:
   - php5-xsl
 ```
 
-The PHP Modules to load.
+the php modules to enable
+
+```
+php56_modules_disabled: []
+```
+
+the php modules to disable
 
 ## Example Playbook
 
 ```
 - hosts: localhost
   vars:
-    php56_modules:
+    php56_modules_enabled:
       - php5-cli
-      - php5-curl
-      - php5-gd
-      - php5-geoip
-      - php5-imagick
       - php5-mcrypt
       - php5-memcached
       - php5-mongo
       - php5-mysql
       - php5-sqlite
-      - php5-xdebug
-      - php5-xsl
   roles:
     - { role: elnebuloso.php56 }
 ```
@@ -69,4 +64,4 @@ MIT
 
 ##  Author Information
 
-This role was created in 2014 by [elnebuloso](https://github.com/elnebuloso/)
+This role was created in 2016 by [elnebuloso](https://github.com/elnebuloso/)
