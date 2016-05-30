@@ -5,10 +5,9 @@
 - name: install php5
   apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
   with_items:
+    # meta-package, automatically installs:
+    # php5-common, php5-json, php5-readline
     - php5-cli
-    - php5-common   # automatically through php5-cli, but aware to be installed
-    - php5-json     # automatically through php5-cli, but aware to be installed
-    - php5-readline # automatically through php5-cli, but aware to be installed
 
 - name: enable additional php5 modules
   apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
