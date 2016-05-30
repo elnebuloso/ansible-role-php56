@@ -1,21 +1,21 @@
 ---
-- name: add php repository
+- name: add php5 repository
   apt_repository: repo='ppa:ondrej/php5-5.6' state=present
 
-- name: install php5
+- name: install php5 mandatory modules
   apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
   with_items:
     # meta-package, automatically installs:
     # php5-common, php5-json, php5-readline
     - php5-cli
 
-- name: enable additional php5 modules
+- name: enable optional php5 modules
   apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
   with_items: "{{php56_modules_enabled}}"
 
-- name: disable additional php5 modules
+- name: disable optional php5 modules
   apt: pkg={{item}} state=absent
   with_items: "{{php56_modules_disabled}}"
 
-- name: configure php cli timezone
+- name: configure php5 cli timezone
   template: src=php/cli.tpl dest=/etc/php5/cli/conf.d/00-provision-timezone.ini
