@@ -18,4 +18,4 @@
   with_items: "{{php56_modules_disabled}}"
 
 - name: configure php5 cli timezone
-  template: src=php/cli.tpl dest=/etc/php5/cli/conf.d/00-provision-timezone.ini
+  template: src=php5/cli.tpl dest=/etc/php5/cli/conf.d/00-provision-timezone.ini
