@@ -2,19 +2,14 @@
 # the timezone to use by php5
 php56_timezone: "Europe/Berlin"
 
-# optional php5 modules to enable
-php56_modules_enabled:
-  - php5-curl
-  - php5-gd
-  - php5-geoip
-  - php5-imagick
-  - php5-mcrypt
-  - php5-memcached
-  - php5-mongo
-  - php5-mysql
-  - php5-sqlite
-  - php5-xdebug
-  - php5-xsl
+# set this for using webserver
+php56_webserver_enabled: true
 
-# optional php5 modules to disable
-php56_modules_disabled: []
+# set this for the webserver types available: apache2
+php56_webserver_type: "apache2"
+
+# the hostname for the webserver to listen
+php56_webserver_hostname: "box.entwickl.de"
+
+# the hostname for the webserver to listen
+php56_webserver_port: "80"

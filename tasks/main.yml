@@ -1,21 +1,43 @@
 ---
-- name: add php5 repository
-  apt_repository: repo='ppa:ondrej/php5-5.6' state=present
+- name: configure os
+  set_fact:
+    server_base_os: "{{ansible_distribution|lower}}{{ansible_distribution_major_version|int}}"
 
-- name: install php5
-  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
-  with_items:
-    # meta-package, automatically installs:
-    # php5-common, php5-json, php5-readline
-    - php5-cli
+- name: include os variables
+  include_vars: "{{server_base_os}}.yml"
 
-- name: enable optional php5 modules
-  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
-  with_items: "{{php56_modules_enabled}}"
+# define os variables
 
-- name: disable optional php5 modules
-  apt: pkg={{item}} state=absent
-  with_items: "{{php56_modules_disabled}}"
+- name: define php56_modules_enabled
+  set_fact:
+    php56_modules_enabled: "{{__php56_modules_enabled}}"
+  when: php56_modules_enabled is not defined
 
-- name: configure php5 cli timezone
-  template: src=php5/cli.tpl dest=/etc/php5/cli/conf.d/00-provision-timezone.ini
+- name: define php56_modules_disabled
+  set_fact:
+    php56_modules_disabled: "{{__php56_modules_disabled}}"
+  when: php56_modules_disabled is not defined
+
+- name: define php56_apache2_modules_enabled
+  set_fact:
+    php56_apache2_modules_enabled: "{{__php56_apache2_modules_enabled}}"
+  when: php56_apache2_modules_enabled is not defined
+
+- name: define php56_apache2_modules_disabled
+  set_fact:
+    php56_apache2_modules_disabled: "{{__php56_apache2_modules_disabled}}"
+  when: php56_apache2_modules_disabled is not defined
+
+- name: define php56_command_webserver_restart
+  set_fact:
+    php56_command_webserver_restart: "{{__php56_command_webserver_restart}}"
+  when: php56_command_webserver_restart is not defined
+
+# setup os
+
+- name: setup {{server_base_os}}
+  include: "{{server_base_os}}.yml"
+
+- name: setup {{server_base_os}}-webserver-apache2
+  include: "{{server_base_os}}-webserver-apache2.yml"
+  when: php56_webserver_enabled == true and php56_webserver_type == 'apache2'

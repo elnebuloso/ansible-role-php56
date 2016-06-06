@@ -1,0 +1,21 @@
+---
+- name: add php56 repository
+  apt_repository: repo='ppa:ondrej/php5-5.6' state=present
+
+- name: install main php56 packages
+  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
+  with_items:
+    # meta-package, automatically installs:
+    # php5-common, php5-json, php5-readline
+    - php5-cli
+
+- name: enable optional php56 modules
+  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
+  with_items: "{{php56_modules_enabled}}"
+
+- name: disable optional php56 modules
+  apt: pkg={{item}} state=absent
+  with_items: "{{php56_modules_disabled}}"
+
+- name: configure php56 cli
+  template: src={{server_base_os}}/etc/php5/cli/conf.d/00-provision.ini.tpl dest=/etc/php5/cli/conf.d/00-provision.ini

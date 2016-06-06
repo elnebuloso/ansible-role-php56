@@ -1,0 +1,27 @@
+---
+- name: install main php56 packages
+  apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
+  with_items:
+    # meta-package, automatically installs:
+    # apache2 apache2-bin apache2-data libapache2-mod-php5 libapr1 libaprutil1
+    # libaprutil1-dbd-sqlite3 libaprutil1-ldap php5-cli php5-common php5-json
+    # php5-readline ssl-cert
+    - php5
+
+- name: enable apache2 php56 module
+  apache2_module: state=present name=php5
+  notify: php56_webserver_restart
+
+- name: enable optional apache2 modules
+  apache2_module: state=present name={{item}}
+  with_items: "{{php56_apache2_modules_enabled}}"
+  notify: php56_webserver_restart
+
+- name: disable optional apache2 modules
+  apache2_module: state=absent name={{item}}
+  with_items: "{{php56_apache2_modules_disabled}}"
+  notify: php56_webserver_restart
+
+- name: configure php56 apache2
+  template: src={{server_base_os}}/etc/php5/apache2/conf.d/00-provision.ini.tpl dest=/etc/php5/apache2/conf.d/00-provision.ini
+  notify: php56_webserver_restart

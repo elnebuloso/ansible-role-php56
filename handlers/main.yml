@@ -1,0 +1,6 @@
+---
+- name: php56_webserver_restart
+  service:
+    name: "{{php56_command_webserver_restart}}"
+    state: restarted
+  when: php56_webserver_enabled

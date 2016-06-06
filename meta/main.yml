@@ -15,5 +15,6 @@ galaxy_info:
     - development
     - webserver
     - php
+    - php56
 
 dependencies: []

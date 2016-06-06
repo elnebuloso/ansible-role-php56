@@ -1,0 +1,31 @@
+---
+# optional php5 modules to enable
+__php56_modules_enabled:
+  - php5-curl
+  - php5-gd
+  - php5-geoip
+  - php5-imagick
+  - php5-mcrypt
+  - php5-memcached
+  - php5-mongo
+  - php5-mysql
+  - php5-sqlite
+  - php5-xdebug
+  - php5-xsl
+
+# optional php5 modules to disable
+__php56_modules_disabled: []
+
+# optional apache2 modules to enable
+__php56_apache2_modules_enabled:
+  - headers
+  - proxy
+  - proxy_http
+  - rewrite
+  - vhost_alias
+
+# optional apache2 modules to disable
+__php56_apache2_modules_disabled: []
+
+# the command to restart the webserver
+__php56_command_webserver_restart: "apache2"
