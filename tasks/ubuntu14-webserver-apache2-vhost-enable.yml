@@ -1,0 +1,8 @@
+---
+- name: create vhost in sites-available
+  template: src={{server_base_os}}/etc/apache2/sites-available/{{vhost}}.conf dest=/etc/apache2/sites-available/{{vhost}}.conf
+  notify: php56_webserver_restart
+
+- name: create vhost in sites-enabled
+  command: a2ensite {{vhost}} creates=/etc/apache2/sites-enabled/{{vhost}}.conf
+  notify: php56_webserver_restart

@@ -1,0 +1,4 @@
+---
+- name: disable vhost in sites-enabled
+  file: path=/etc/apache2/sites-enabled/{{vhost}}.conf state=absent
+  notify: php56_webserver_restart

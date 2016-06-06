@@ -25,3 +25,48 @@
 - name: configure php56 apache2
   template: src={{server_base_os}}/etc/php5/apache2/conf.d/00-provision.ini.tpl dest=/etc/php5/apache2/conf.d/00-provision.ini
   notify: php56_webserver_restart
+
+# remove apache2 default vhost
+
+- name: disable apache2 default
+  include: ubuntu14-webserver-apache2-vhost-disable.yml vhost=000-default
+
+# handle vhost default
+
+- name: enable vhost default
+  include: ubuntu14-webserver-apache2-vhost-enable.yml vhost=000-vhost-default
+  when: php56_webserver_vhost_default_enabled == true
+
+- name: disable vhost default
+  include: ubuntu14-webserver-apache2-vhost-disable.yml vhost=000-vhost-default
+  when: php56_webserver_vhost_default_enabled != true
+
+# handle vhost builds
+
+- name: enable vhost builds
+  include: ubuntu14-webserver-apache2-vhost-enable.yml vhost=001-vhost-builds
+  when: php56_webserver_vhost_builds_enabled == true
+
+- name: disable vhost builds
+  include: ubuntu14-webserver-apache2-vhost-disable.yml vhost=001-vhost-builds
+  when: php56_webserver_vhost_builds_enabled != true
+
+# handle vhost releases
+
+- name: enable vhost releases
+  include: ubuntu14-webserver-apache2-vhost-enable.yml vhost=002-vhost-releases
+  when: php56_webserver_vhost_releases_enabled == true
+
+- name: disable vhost builds
+  include: ubuntu14-webserver-apache2-vhost-disable.yml vhost=002-vhost-releases
+  when: php56_webserver_vhost_releases_enabled != true
+
+# handle vhost dynamic
+
+- name: enable vhost dynamic
+  include: ubuntu14-webserver-apache2-vhost-enable.yml vhost=1000-vhost-dynamic
+  when: php56_webserver_vhost_dynamic_enabled == true
+
+- name: disable vhost dynamic
+  include: ubuntu14-webserver-apache2-vhost-disable.yml vhost=1000-vhost-dynamic
+  when: php56_webserver_vhost_dynamic_enabled != true

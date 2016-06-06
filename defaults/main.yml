@@ -13,3 +13,29 @@ php56_webserver_hostname: "box.entwickl.de"
 
 # the hostname for the webserver to listen
 php56_webserver_port: "80"
+
+# vhost default
+php56_webserver_vhost_default_enabled: true
+php56_webserver_vhost_default_docroot: "/var/www"
+php56_webserver_vhost_default_options: "Indexes FollowSymLinks"
+php56_webserver_vhost_default_log_level: "warn"
+
+# vhost builds
+php56_webserver_vhost_builds_enabled: true
+php56_webserver_vhost_builds_docroot: "/var/builds"
+php56_webserver_vhost_builds_options: "Indexes FollowSymLinks"
+php56_webserver_vhost_builds_log_level: "warn"
+
+# vhost releases
+php56_webserver_vhost_releases_enabled: true
+php56_webserver_vhost_releases_docroot: "/var/releases"
+php56_webserver_vhost_releases_options: "Indexes FollowSymLinks"
+php56_webserver_vhost_releases_log_level: "warn"
+
+# vhost dynamic
+php56_webserver_vhost_dynamic_enabled: true
+php56_webserver_vhost_dynamic_base: "/var/www"
+php56_webserver_vhost_dynamic_docroot: "public"
+php56_webserver_vhost_dynamic_options: "Indexes FollowSymLinks"
+php56_webserver_vhost_dynamic_log_level: "warn"
+php56_webserver_vhost_dynamic_env: "development"
