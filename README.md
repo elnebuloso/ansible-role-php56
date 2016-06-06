@@ -16,36 +16,49 @@ Available variables are listed below, along with default values (see `defaults/m
 # the timezone to use by php5
 php56_timezone: "Europe/Berlin"
 
-# optional php5 modules to enable
-php56_modules_enabled:
-  - php5-curl
-  - php5-gd
-  - php5-geoip
-  - php5-imagick
-  - php5-mcrypt
-  - php5-memcached
-  - php5-mongo
-  - php5-mysql
-  - php5-sqlite
-  - php5-xdebug
-  - php5-xsl
+# set this for using webserver
+php56_webserver_enabled: true
 
-# optional php5 modules to disable
-php56_modules_disabled: []
+# set this for the webserver types available: apache2
+php56_webserver_type: "apache2"
+
+# the hostname for the webserver to listen
+php56_webserver_hostname: "box.entwickl.de"
+
+# the hostname for the webserver to listen
+php56_webserver_port: "80"
+
+# vhost default
+php56_webserver_vhost_default_enabled: true
+php56_webserver_vhost_default_docroot: "/var/www"
+php56_webserver_vhost_default_options: "Indexes FollowSymLinks"
+php56_webserver_vhost_default_log_level: "warn"
+
+# vhost builds
+php56_webserver_vhost_builds_enabled: true
+php56_webserver_vhost_builds_docroot: "/var/builds"
+php56_webserver_vhost_builds_options: "Indexes FollowSymLinks"
+php56_webserver_vhost_builds_log_level: "warn"
+
+# vhost releases
+php56_webserver_vhost_releases_enabled: true
+php56_webserver_vhost_releases_docroot: "/var/releases"
+php56_webserver_vhost_releases_options: "Indexes FollowSymLinks"
+php56_webserver_vhost_releases_log_level: "warn"
+
+# vhost dynamic
+php56_webserver_vhost_dynamic_enabled: true
+php56_webserver_vhost_dynamic_base: "/var/www"
+php56_webserver_vhost_dynamic_docroot: "public"
+php56_webserver_vhost_dynamic_options: "Indexes FollowSymLinks"
+php56_webserver_vhost_dynamic_log_level: "warn"
+php56_webserver_vhost_dynamic_env: "development"
 ```
 
 ## Example Playbook
 
 ```
 - hosts: localhost
-  vars:
-    php56_modules_enabled:
-      - php5-cli
-      - php5-mcrypt
-      - php5-memcached
-      - php5-mongo
-      - php5-mysql
-      - php5-sqlite
   roles:
     - { role: elnebuloso.php56 }
 ```
