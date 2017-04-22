@@ -5,6 +5,7 @@
 
 - name: include os variables
   include_vars: "{{server_base_os}}.yml"
+  when: server_base_os is defined and server_base_os != ""
 
 # define os variables
 
@@ -37,7 +38,8 @@
 
 - name: setup {{server_base_os}}
   include: "{{server_base_os}}.yml"
+  when: server_base_os is defined and server_base_os != ""
 
 - name: setup {{server_base_os}}-webserver-apache2
   include: "{{server_base_os}}-webserver-apache2.yml"
-  when: php56_webserver_enabled == true and php56_webserver_type == 'apache2'
+  when: server_base_os is defined and server_base_os != "" and php56_webserver_enabled == true and php56_webserver_type == "apache2"
