@@ -1,5 +1,5 @@
 ---
-# php56 settings
+# php settings
 php56_config_timezone: "Europe/Berlin"
 php56_config_post_max_size: "40M"
 php56_config_upload_max_filesize: "10M"
