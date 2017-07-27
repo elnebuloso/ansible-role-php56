@@ -1,0 +1,52 @@
+---
+- name: install apache2 modules
+  apache2_module: state=present name={{item}}
+  with_items: "{{php56_apache2_modules}}"
+  notify: php56_webserver_restart
+
+- name: install apache2 modules optional
+  apache2_module: state=present name={{item}}
+  with_items: "{{php56_apache2_modules_optional}}"
+  notify: php56_webserver_restart
+
+- name: configure apache2 php
+  template: src=php/00-provision.ini.tpl dest=/etc/php5/apache2/conf.d/00-provision.ini
+  notify: php56_webserver_restart
+  when: php56_os == "ubuntu14"
+
+- name: configure apache2 php
+  template: src=php/00-provision.ini.tpl dest=/etc/php/5.6/apache2/conf.d/00-provision.ini
+  notify: php56_webserver_restart
+  when: php56_os == "ubuntu16"
+
+################################################################################################
+
+- name: enable apache2 conf servername
+  include: webserver-apache2-conf-enable.yml conf=servername
+
+- name: enable apache2 conf security
+  include: webserver-apache2-conf-enable.yml conf=security
+
+################################################################################################
+
+# handle vhost default
+
+- name: enable vhost default
+  include: webserver-apache2-vhost-enable.yml vhost=000-default
+  when: php56_webserver_vhost_default_enabled == true
+
+- name: disable vhost default
+  include: webserver-apache2-vhost-disable.yml vhost=000-default
+  when: php56_webserver_vhost_default_enabled != true
+
+################################################################################################
+
+# handle vhost dynamic
+
+- name: enable vhost dynamic
+  include: webserver-apache2-vhost-enable.yml vhost=999-vhost-dynamic
+  when: php56_webserver_vhost_dynamic_enabled == true
+
+- name: disable vhost dynamic
+  include: webserver-apache2-vhost-disable.yml vhost=999-vhost-dynamic
+  when: php56_webserver_vhost_dynamic_enabled != true

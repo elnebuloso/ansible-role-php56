@@ -8,59 +8,25 @@ PHP 5.6 for Linux Server.
 
 This role requires Ansible 2.0 or higher, and platform requirements are listed in the metadata file.
 
+## Supported Distributions
+
+- ubuntu14
+- ubuntu16
+
 ## Role Variables
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
-
-```
-# the timezone to use by php5
-php56_timezone: "Europe/Berlin"
-
-# set this for using webserver
-php56_webserver_enabled: true
-
-# set this for the webserver types available: apache2
-php56_webserver_type: "apache2"
-
-# the hostname for the webserver to listen
-php56_webserver_hostname: "box.entwickl.de"
-
-# the hostname for the webserver to listen
-php56_webserver_port: "80"
-
-# vhost default
-php56_webserver_vhost_default_enabled: true
-php56_webserver_vhost_default_docroot: "/var/www"
-php56_webserver_vhost_default_options: "Indexes FollowSymLinks"
-php56_webserver_vhost_default_log_level: "warn"
-
-# vhost builds
-php56_webserver_vhost_builds_enabled: true
-php56_webserver_vhost_builds_docroot: "/var/builds"
-php56_webserver_vhost_builds_options: "Indexes FollowSymLinks"
-php56_webserver_vhost_builds_log_level: "warn"
-
-# vhost releases
-php56_webserver_vhost_releases_enabled: true
-php56_webserver_vhost_releases_docroot: "/var/releases"
-php56_webserver_vhost_releases_options: "Indexes FollowSymLinks"
-php56_webserver_vhost_releases_log_level: "warn"
-
-# vhost dynamic
-php56_webserver_vhost_dynamic_enabled: true
-php56_webserver_vhost_dynamic_base: "/var/www"
-php56_webserver_vhost_dynamic_docroot: "public"
-php56_webserver_vhost_dynamic_options: "Indexes FollowSymLinks"
-php56_webserver_vhost_dynamic_log_level: "warn"
-php56_webserver_vhost_dynamic_env: "development"
-```
+- [`defaults/main.yml`](https://github.com/elnebuloso/ansible-role-php56/blob/master/defaults/main.yml)
+- [`vars/main.yml`](https://github.com/elnebuloso/ansible-role-php56/blob/master/vars/main.yml)
+- [`vars/ubuntu14.yml`](https://github.com/elnebuloso/ansible-role-php56/blob/master/vars/ubuntu14.yml)
+- [`vars/ubuntu16.yml`](https://github.com/elnebuloso/ansible-role-php56/blob/master/vars/ubuntu16.yml)
+- Variables prefixed with __ (2 Underscores) are Defaults, overwrite them by writing without the Underscores
 
 ## Example Playbook
 
 ```
 - hosts: localhost
   roles:
-    - { role: elnebuloso.php56 }
+    - role: elnebuloso.php56
 ```
 
 ## Dependencies

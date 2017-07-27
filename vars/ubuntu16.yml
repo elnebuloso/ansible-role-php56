@@ -1,24 +1,29 @@
 ---
 # php5 modules to enable
 __php56_modules:
-  - php5-apcu
-  - php5-common
-  - php5-curl
-  - php5-gd
-  - php5-geoip
-  - php5-imagick
-  - php5-intl
-  - php5-mcrypt
-  - php5-memcache
-  - php5-memcached
-  - php5-mongo
-  - php5-mysql
-  - php5-sqlite
-  - php5-xsl
+  - php5.6-apcu
+  - php5.6-common
+  - php5.6-curl
+  - php5.6-gd
+  - php5.6-geoip
+  - php5.6-imagick
+  - php5.6-intl
+  - php5.6-mbstring
+  - php5.6-mcrypt
+  - php5.6-memcache
+  - php5.6-memcached
+  - php5.6-mongo
+  - php5.6-mongodb
+  - php5.6-mysql
+  - php5.6-sqlite3
+  - php5.6-xml
+  - php5.6-xsl
+  - php5.6-yaml
+  - php5.6-zip
 
 # php5 modules to enable, optional
 __php56_modules_optional:
-  - php5-xdebug
+  - php5.6-xdebug
 
 # apache2 modules to enable
 __php56_apache2_modules:

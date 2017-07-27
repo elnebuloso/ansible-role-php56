@@ -1,45 +1,45 @@
 ---
-- name: configure os
-  set_fact:
-    server_base_os: "{{ansible_distribution|lower}}{{ansible_distribution_major_version|int}}"
-
 - name: include os variables
-  include_vars: "{{server_base_os}}.yml"
-  when: server_base_os is defined and server_base_os != ""
+  include_vars: "{{php56_os}}.yml"
+  when: php56_os is defined and php56_os != ""
+
+################################################################################################
 
 # define os variables
 
-- name: define php56_modules_enabled
+- name: define php56_modules
   set_fact:
-    php56_modules_enabled: "{{__php56_modules_enabled}}"
-  when: php56_modules_enabled is not defined
+    php56_modules: "{{__php56_modules}}"
+  when: php56_modules is not defined
 
-- name: define php56_modules_disabled
+- name: define php56_modules_optional
   set_fact:
-    php56_modules_disabled: "{{__php56_modules_disabled}}"
-  when: php56_modules_disabled is not defined
+    php56_modules_optional: "{{__php56_modules_optional}}"
+  when: php56_modules_optional is not defined
 
-- name: define php56_apache2_modules_enabled
+- name: define php56_apache2_modules
   set_fact:
-    php56_apache2_modules_enabled: "{{__php56_apache2_modules_enabled}}"
-  when: php56_apache2_modules_enabled is not defined
+    php56_apache2_modules: "{{__php56_apache2_modules}}"
+  when: php56_apache2_modules is not defined
 
-- name: define php56_apache2_modules_disabled
+- name: define php56_apache2_modules_optional
   set_fact:
-    php56_apache2_modules_disabled: "{{__php56_apache2_modules_disabled}}"
-  when: php56_apache2_modules_disabled is not defined
+    php56_apache2_modules_optional: "{{__php56_apache2_modules_optional}}"
+  when: php56_apache2_modules_optional is not defined
 
 - name: define php56_command_webserver_restart
   set_fact:
     php56_command_webserver_restart: "{{__php56_command_webserver_restart}}"
   when: php56_command_webserver_restart is not defined
 
+################################################################################################
+
 # setup os
 
-- name: setup {{server_base_os}}
-  include: "{{server_base_os}}.yml"
-  when: server_base_os is defined and server_base_os != ""
+- name: setup {{php56_os}}
+  include: "{{php56_os}}.yml"
+  when: php56_os is defined and php56_os != ""
 
-- name: setup {{server_base_os}}-webserver-apache2
-  include: "{{server_base_os}}-webserver-apache2.yml"
-  when: server_base_os is defined and server_base_os != "" and php56_webserver_enabled == true and php56_webserver_type == "apache2"
+- name: setup webserver-apache2
+  include: "webserver-apache2.yml"
+  when: php56_os is defined and php56_os != "" and php56_webserver_enabled == true and php56_webserver_type == "apache2"

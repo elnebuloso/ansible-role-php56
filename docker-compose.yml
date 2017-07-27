@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  ubuntu14:
+    image: elnebuloso/ansible:ubuntu14-latest
+    volumes:
+      - .:/etc/ansible/roles/ansible-role-php56
+
+  ubuntu16:
+    image: elnebuloso/ansible:ubuntu16-latest
+    volumes:
+      - .:/etc/ansible/roles/ansible-role-php56

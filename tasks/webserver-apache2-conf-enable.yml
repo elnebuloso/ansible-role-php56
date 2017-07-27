@@ -1,0 +1,8 @@
+---
+- name: create vhost in conf-available
+  template: src=apache2/conf-available/{{conf}}.conf dest=/etc/apache2/conf-available/{{conf}}.conf
+  notify: php56_webserver_restart
+
+- name: create vhost in conf-enabled
+  command: a2enconf {{conf}} creates=/etc/apache2/conf-enabled/{{conf}}.conf
+  notify: php56_webserver_restart

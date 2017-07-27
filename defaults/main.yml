@@ -1,6 +1,11 @@
 ---
-# the timezone to use by php5
-php56_timezone: "Europe/Berlin"
+# php56 settings
+php56_config_timezone: "Europe/Berlin"
+php56_config_post_max_size: "40M"
+php56_config_upload_max_filesize: "10M"
+php56_config_max_execution_time: "30"
+php56_config_max_input_time: "60"
+php56_config_expose_php: "Off"
 
 # set this for using webserver
 php56_webserver_enabled: true
@@ -20,22 +25,9 @@ php56_webserver_vhost_default_docroot: "/var/www"
 php56_webserver_vhost_default_options: "Indexes FollowSymLinks"
 php56_webserver_vhost_default_log_level: "warn"
 
-# vhost builds
-php56_webserver_vhost_builds_enabled: true
-php56_webserver_vhost_builds_docroot: "/var/builds"
-php56_webserver_vhost_builds_options: "Indexes FollowSymLinks"
-php56_webserver_vhost_builds_log_level: "warn"
-
-# vhost releases
-php56_webserver_vhost_releases_enabled: true
-php56_webserver_vhost_releases_docroot: "/var/releases"
-php56_webserver_vhost_releases_options: "Indexes FollowSymLinks"
-php56_webserver_vhost_releases_log_level: "warn"
-
 # vhost dynamic
 php56_webserver_vhost_dynamic_enabled: true
 php56_webserver_vhost_dynamic_base: "/var/www"
 php56_webserver_vhost_dynamic_docroot: "public"
 php56_webserver_vhost_dynamic_options: "Indexes FollowSymLinks"
 php56_webserver_vhost_dynamic_log_level: "warn"
-php56_webserver_vhost_dynamic_env: "development"

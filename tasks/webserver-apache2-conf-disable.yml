@@ -1,0 +1,4 @@
+---
+- name: disable conf in conf-enabled
+  file: path=/etc/apache2/conf-enabled/{{conf}}.conf state=absent
+  notify: php56_webserver_restart
